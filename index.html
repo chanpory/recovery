@@ -2,6 +2,7 @@
 
 <html>
 <head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
@@ -48,9 +49,14 @@ body { background: #fff; padding: 1rem; }
 .divider { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 0 4px; }
 
 @media (max-width: 600px) {
-  .meal-header { flex-wrap: nowrap; align-items: flex-start; padding: 12px 14px; }
-  .meal-time { min-width: 58px; flex-shrink: 0; padding-top: 1px; }
-  .meal-name { min-width: 0; flex: 1; }
+  .meal-header { flex-wrap: nowrap; align-items: flex-start; padding: 10px 10px; gap: 6px; }
+  .meal-time { min-width: 48px; flex-shrink: 0; padding-top: 2px; font-size: 11px; }
+  .meal-name { flex: 1 1 0; min-width: 0; font-size: 14px; padding-right: 2px; }
+  .badges { flex-shrink: 0; }
+  .badge { font-size: 9px; padding: 1px 5px; }
+  .meal-macros { flex-shrink: 0; gap: 3px; }
+  .macro-pill { padding: 1px 5px; font-size: 10px; }
+  .chevron { padding-top: 2px; }
   .ingredient { flex-wrap: wrap; gap: 2px 8px; }
   .ing-detail { text-align: left; width: 100%; padding-left: 0; font-size: 11px; }
 }
