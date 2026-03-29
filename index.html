@@ -48,9 +48,9 @@ body { background: #fff; padding: 1rem; }
 .divider { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 0 4px; }
 
 @media (max-width: 600px) {
-  .meal-header { flex-wrap: wrap; gap: 6px 10px; }
-  .meal-time { min-width: auto; }
-  .meal-name { min-width: 0; }
+  .meal-header { flex-wrap: nowrap; align-items: flex-start; padding: 12px 14px; }
+  .meal-time { min-width: 58px; flex-shrink: 0; padding-top: 1px; }
+  .meal-name { min-width: 0; flex: 1; }
   .ingredient { flex-wrap: wrap; gap: 2px 8px; }
   .ing-detail { text-align: left; width: 100%; padding-left: 0; font-size: 11px; }
 }
