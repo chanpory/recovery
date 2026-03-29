@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+body { background: #fff; padding: 1rem; }
+.header { margin-bottom: 1.5rem; }
+.header-title { font-size: 18px; font-weight: 500; color: #111; margin-bottom: 4px; }
+.header-sub { font-size: 12px; color: #888; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+.stat { background: #f5f5f5; border-radius: 8px; padding: 12px 14px; }
+.stat-label { font-size: 11px; color: #888; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+.stat-value { font-size: 20px; font-weight: 500; color: #111; }
+.stat-unit { font-size: 12px; color: #888; }
+.meals { display: flex; flex-direction: column; gap: 4px; }
+.meal { border: 0.5px solid #ddd; border-radius: 8px; overflow: hidden; }
+.meal-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer; background: #fff; }
+.meal-header:hover { background: #f9f9f9; }
+.meal-time { font-size: 12px; color: #888; min-width: 58px; }
+.meal-name { font-size: 14px; font-weight: 500; color: #111; flex: 1; }
+.badges { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+.badge { font-size: 10px; border-radius: 20px; padding: 1px 7px; white-space: nowrap; }
+.badge-rotation { background: #E6F1FB; color: #185FA5; }
+.meal-macros { display: flex; gap: 6px; flex-shrink: 0; }
+.macro-pill { border-radius: 20px; padding: 2px 8px; font-size: 11px; white-space: nowrap; }
+.macro-protein { color: #185FA5; background: #E6F1FB; }
+.macro-cal { background: #f0f0f0; color: #666; }
+.chevron { font-size: 10px; color: #999; transition: transform 0.15s; flex-shrink: 0; }
+.chevron.open { transform: rotate(180deg); }
+.meal-detail { padding: 0 14px 12px; display: none; border-top: 0.5px solid #eee; }
+.meal-detail.open { display: block; }
+.ingredient-list { margin-top: 10px; }
+.ingredient { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 0; border-bottom: 0.5px solid #eee; font-size: 13px; gap: 8px; }
+.ingredient:last-child { border-bottom: none; }
+.ing-name { color: #111; flex: 1; }
+.ing-name.collagen { color: #3B6D11; font-weight: 500; }
+.ing-detail { color: #888; font-size: 12px; text-align: right; }
+.ing-note { font-size: 12px; color: #888; margin-top: 8px; font-style: italic; line-height: 1.5; }
+.alert-note { font-size: 12px; border-radius: 8px; padding: 8px 12px; margin-top: 8px; line-height: 1.5; }
+.alert-amber { color: #854F0B; background: #FAEEDA; }
+.alert-green { color: #3B6D11; background: #EAF3DE; }
+.section-title { font-size: 15px; font-weight: 500; color: #111; margin: 1.5rem 0 0.75rem; }
+.tip-box { background: #f5f5f5; border-left: 2px solid #ccc; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; color: #555; margin-bottom: 8px; line-height: 1.6; }
+.footer-green { font-size: 12px; color: #3B6D11; background: #EAF3DE; border-radius: 8px; padding: 8px 12px; margin-top: 8px; }
+.footer-amber { font-size: 12px; color: #854F0B; background: #FAEEDA; border-radius: 8px; padding: 8px 12px; margin-top: 8px; }
+.divider { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 0 4px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-title">Recovery meal plan — weeks 1 & 2</div>
+  <div class="header-sub">April 9 – April 23 · No chewing · Everything through squirt bottle</div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-label">Daily calories</div><div class="stat-value" id="total-cal">—</div></div>
+  <div class="stat"><div class="stat-label">Daily protein</div><div class="stat-value" id="total-protein">—</div></div>
+  <div class="stat"><div class="stat-label">Fluid target</div><div class="stat-value">2.5 <span class="stat-unit">L</span></div></div>
+</div>
+
+<div class="meals" id="meals"></div>
+
+<p class="section-title">Tips</p>
+<div id="tips"></div>
+<div class="footer-green">✦ Collagen ingredients are highlighted green. Always take with Vitamin C for maximum bone healing benefit.</div>
+<div class="footer-amber" style="margin-top:8px">Do NOT take Percocet and Klonopin together. Follow Dr. Movahed's Pain Management Schedule exactly.</div>
+
+<script>
+const meals = [
+  {
+    time: "8:00 AM",
+    name: "TSH bone broth + collagen + meds",
+    cal: 95, protein: 19,
+    rotation: false,
+    ingredients: [
+      { name: "Three Stone Hearth chicken bone broth", amount: "8 oz warm", detail: "~60 cal · 9g protein", collagen: false },
+      { name: "Costco collagen peptides ✦", amount: "1 scoop", detail: "~35 cal · 10g protein", collagen: true },
+      { name: "Morning medications", amount: "as prescribed", detail: null, collagen: false },
+      { name: "Vitamin C 500mg", amount: "1 tablet", detail: "take alongside collagen", collagen: false }
+    ],
+    note: "Stir collagen into warm broth until fully dissolved — it goes clear. Take Vitamin C at the same time to maximize collagen absorption and bone healing.",
+    alert: { type: "green", text: "The first 3 weeks post-surgery are when your body's demand for collagen is highest. This is the most important supplement slot of the day." }
+  },
+  {
+    time: "9:30 AM",
+    name: "Blueberry almond smoothie",
+    cal: 490, protein: 39,
+    rotation: false,
+    ingredients: [
+      { name: "Three Trees almond milk", amount: "1 cup", detail: "40 cal · 1g protein", collagen: false },
+      { name: "Frozen blueberries", amount: "¾ cup", detail: "65 cal · 1g protein", collagen: false },
+      { name: "Almond butter", amount: "2 tbsp", detail: "190 cal · 7g protein", collagen: false },
+      { name: "Frozen banana", amount: "½ medium", detail: "52 cal · 0.5g protein", collagen: false },
+      { name: "GENEPRO unflavored protein", amount: "1 scoop", detail: "~120 cal · 30g protein", collagen: false },
+      { name: "Honey", amount: "1 tsp", detail: "21 cal", collagen: false }
+    ],
+    note: "Blend until completely smooth. Thin with a splash more almond milk if needed for the squirt bottle. Rotate with the three options below every day.",
+    alert: null
+  },
+  {
+    time: "↻",
+    name: "Date tahini sesame smoothie",
+    cal: 560, protein: 37,
+    rotation: true,
+    ingredients: [
+      { name: "Three Trees sesame milk", amount: "1 cup", detail: "140 cal · 3g protein", collagen: false },
+      { name: "Tahini", amount: "2 tbsp", detail: "180 cal · 5g protein", collagen: false },
+      { name: "Medjool dates (pitted, soaked 5 min)", amount: "2 dates", detail: "133 cal · 1g protein", collagen: false },
+      { name: "Frozen banana", amount: "½ medium", detail: "52 cal · 0.5g protein", collagen: false },
+      { name: "GENEPRO unflavored protein", amount: "1 scoop", detail: "~120 cal · 30g protein", collagen: false },
+      { name: "Cinnamon", amount: "pinch", detail: null, collagen: false }
+    ],
+    note: "Soak dates in warm water 5 min first so they blend completely smooth. Rich, naturally sweet — closest to a halvah flavor. Thin if needed for squeeze bottle.",
+    alert: null
+  },
+  {
+    time: "↻",
+    name: "Chocolate sesame smoothie",
+    cal: 540, protein: 40,
+    rotation: true,
+    ingredients: [
+      { name: "Three Trees sesame milk", amount: "1 cup", detail: "140 cal · 3g protein", collagen: false },
+      { name: "Natural peanut butter", amount: "2 tbsp", detail: "190 cal · 8g protein", collagen: false },
+      { name: "Cocoa powder (unsweetened)", amount: "1 tbsp", detail: "12 cal · 1g protein", collagen: false },
+      { name: "Frozen banana", amount: "½ medium", detail: "52 cal · 0.5g protein", collagen: false },
+      { name: "GENEPRO unflavored protein", amount: "1 scoop", detail: "~120 cal · 30g protein", collagen: false },
+      { name: "Honey", amount: "1 tsp", detail: "21 cal", collagen: false }
+    ],
+    note: "Sesame and cocoa work well together — earthy, rich, not overly sweet. Thin with a splash of almond milk if needed.",
+    alert: null
+  },
+  {
+    time: "↻",
+    name: "Chocolate peanut butter coconut smoothie",
+    cal: 520, protein: 38,
+    rotation: true,
+    ingredients: [
+      { name: "Harmless Harvest chocolate coconut smoothie", amount: "1 bottle (10 oz)", detail: "110 cal · 2g protein", collagen: false },
+      { name: "Natural peanut butter", amount: "2 tbsp", detail: "190 cal · 8g protein", collagen: false },
+      { name: "Frozen banana", amount: "½ medium", detail: "52 cal · 0.5g protein", collagen: false },
+      { name: "GENEPRO unflavored protein", amount: "1 scoop", detail: "~120 cal · 30g protein", collagen: false },
+      { name: "Three Trees almond milk to thin", amount: "as needed", detail: "~30 cal", collagen: false }
+    ],
+    note: "Blend fully and thin until it flows freely through the squirt bottle nozzle.",
+    alert: null
+  },
+  {
+    time: "11:00 AM",
+    name: "Kate's Farms shake",
+    cal: 330, protein: 16,
+    rotation: false,
+    ingredients: [
+      { name: "Kate's Farms (any flavor)", amount: "1 bottle (325ml)", detail: "330 cal · 16g protein", collagen: false }
+    ],
+    note: "Pour into squeeze bottle. Sip slowly over 20–30 min. Don't rush — nausea is common early on.",
+    alert: null
+  },
+  {
+    time: "1:00 PM",
+    name: "TSH ginger-turmeric broth + silken tofu",
+    cal: 130, protein: 14,
+    rotation: false,
+    ingredients: [
+      { name: "TSH Ginger-Turmeric Infused Chicken Broth", amount: "1.5 cups", detail: "~75 cal · 9g protein", collagen: false },
+      { name: "Silken tofu (blended in)", amount: "100g", detail: "55 cal · 5g protein", collagen: false }
+    ],
+    note: "Heat broth, blend with silken tofu until completely smooth, strain before bottling. Anti-inflammatory from turmeric and black pepper — ideal for recovery.",
+    alert: null
+  },
+  {
+    time: "3:00 PM",
+    name: "Harmless Harvest coconut avocado smoothie",
+    cal: 280, protein: 3,
+    rotation: false,
+    ingredients: [
+      { name: "Harmless Harvest coconut smoothie (original)", amount: "1 bottle (10 oz)", detail: "110 cal · 1g protein", collagen: false },
+      { name: "Avocado", amount: "½ medium", detail: "120 cal · 1.5g protein", collagen: false },
+      { name: "Honey", amount: "1 tsp", detail: "21 cal", collagen: false },
+      { name: "Lime juice", amount: "squeeze", detail: "flavor", collagen: false },
+      { name: "Three Trees almond milk to thin", amount: "as needed", detail: null, collagen: false }
+    ],
+    note: "Blend fully, then thin with almond milk until it flows easily through nozzle with light pressure. Test consistency before surgery so you know the right ratio.",
+    alert: { type: "amber", text: "Must flow through squirt bottle with light pressure in weeks 1–2. Add liquid until it pours easily." }
+  },
+  {
+    time: "5:00 PM",
+    name: "TSH chicken broth + silken tofu",
+    cal: 115, protein: 14,
+    rotation: false,
+    ingredients: [
+      { name: "TSH Chicken Bone Broth", amount: "1.5 cups", detail: "~60 cal · 9g protein", collagen: false },
+      { name: "Silken tofu (blended in)", amount: "100g", detail: "55 cal · 5g protein", collagen: false }
+    ],
+    note: "Rotate between plain chicken and ginger-turmeric versions across the week to keep savory slots from getting monotonous.",
+    alert: null
+  },
+  {
+    time: "7:00 PM",
+    name: "TSH Tom Kha broth + silken tofu",
+    cal: 230, protein: 8,
+    rotation: false,
+    ingredients: [
+      { name: "TSH Frozen Thai Chicken Broth (Tom Kha)", amount: "1.5 cups thawed", detail: "~175 cal · 3g protein", collagen: false },
+      { name: "Silken tofu (blended in)", amount: "100g", detail: "55 cal · 5g protein", collagen: false }
+    ],
+    note: "Three Stone Hearth makes this fresh — lemongrass, galangal, coconut milk, makrut lime. Harold thaws, heats, blends with tofu, strains. No prep needed.",
+    alert: null
+  },
+  {
+    time: "9:00 PM",
+    name: "Kate's Farms + evening meds",
+    cal: 330, protein: 16,
+    rotation: false,
+    ingredients: [
+      { name: "Kate's Farms (different flavor from morning)", amount: "1 bottle", detail: "330 cal · 16g protein", collagen: false }
+    ],
+    note: "Take evening meds with this. Check daily protein total on the whiteboard — if below 90g, don't skip the nightcap.",
+    alert: null
+  },
+  {
+    time: "10:30 PM",
+    name: "Warm sesame milk + collagen nightcap",
+    cal: 235, protein: 23,
+    rotation: false,
+    ingredients: [
+      { name: "Three Trees sesame milk (warmed)", amount: "1 cup", detail: "140 cal · 3g protein", collagen: false },
+      { name: "GENEPRO unflavored protein", amount: "½ scoop", detail: "~60 cal · 15g protein", collagen: false },
+      { name: "Costco collagen peptides ✦", amount: "1 scoop", detail: "~35 cal · 10g protein", collagen: true },
+      { name: "Cinnamon", amount: "pinch", detail: null, collagen: false }
+    ],
+    note: "Stir collagen and GENEPRO in while milk is warm — both dissolve completely. Second collagen dose of the day. Skip or halve if stomach is upset.",
+    alert: null
+  }
+];
+
+const tips = [
+  "Use the squirt bottle Dr. Movahed provided. Tilt head back slightly to help flow. Test each smoothie through the nozzle before surgery so you know the right consistency.",
+  "After every meal, rinse with warm salt water, then Peridex. Keeps sutures clean.",
+  "Take meds on schedule — don't wait for pain to spike. Harold should keep a log.",
+  "Smoothies thicken saliva — always follow with a few sips of water.",
+  "Rotate the morning smoothie daily across all four options. Patients warn you'll suddenly hate something you liked two days ago — don't over-buy any single ingredient.",
+  "Collagen dissolves completely in warm liquid. Stir until clear before drinking. Always pair with Vitamin C.",
+  "Three Stone Hearth delivers to Berkeley on Wednesdays. Order by Tuesday 8am. Stock up on chicken broth, ginger-turmeric broth, and Tom Kha.",
+  "Track protein on the whiteboard every time you eat. 90g minimum per day. If you're falling short by 9pm, don't skip the nightcap."
+];
+
+const primaryMeals = meals.filter(m => !m.rotation);
+const totalCal = primaryMeals.reduce((s, m) => s + m.cal, 0);
+const totalProtein = primaryMeals.reduce((s, m) => s + m.protein, 0);
+document.getElementById('total-cal').innerHTML = totalCal.toLocaleString() + ' <span class="stat-unit">kcal</span>';
+document.getElementById('total-protein').innerHTML = totalProtein + ' <span class="stat-unit">g</span>';
+
+const openMeals = new Set();
+
+function renderMeals() {
+  document.getElementById('meals').innerHTML = meals.map((meal, i) => `
+    <div class="meal">
+      <div class="meal-header" onclick="toggle(${i})">
+        <span class="meal-time">${meal.time}</span>
+        <span class="meal-name">${meal.name}</span>
+        <span class="badges">${meal.rotation ? '<span class="badge badge-rotation">rotation</span>' : ''}</span>
+        <span class="meal-macros">
+          <span class="macro-pill macro-protein">${meal.protein}g</span>
+          <span class="macro-pill macro-cal">${meal.cal} cal</span>
+        </span>
+        <span class="chevron ${openMeals.has(i) ? 'open' : ''}">▼</span>
+      </div>
+      <div class="meal-detail ${openMeals.has(i) ? 'open' : ''}">
+        <div class="ingredient-list">
+          ${meal.ingredients.map(ing => `
+            <div class="ingredient">
+              <span class="ing-name ${ing.collagen ? 'collagen' : ''}">${ing.name}</span>
+              <span class="ing-detail">${ing.amount}${ing.detail ? ' · ' + ing.detail : ''}</span>
+            </div>`).join('')}
+        </div>
+        ${meal.note ? `<p class="ing-note">${meal.note}</p>` : ''}
+        ${meal.alert ? `<div class="alert-note alert-${meal.alert.type}">${meal.alert.text}</div>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+document.getElementById('tips').innerHTML = tips.map(t => `<div class="tip-box">${t}</div>`).join('');
+
+function toggle(i) {
+  if (openMeals.has(i)) openMeals.delete(i); else openMeals.add(i);
+  renderMeals();
+}
+
+renderMeals();
+</script>
+
+</body>
+</html>
