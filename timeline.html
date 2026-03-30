@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recovery Timeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Timeline-specific styles */
+  .week-section {
+    padding-top: 32px;
+    margin-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .week-section:first-of-type {
+    margin-top: 24px;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .week-title {
+    font-family: 'Lora', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+    line-height: 1.3;
+  }
+
+  .day-title {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-top: 28px;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .day-title:first-child {
+    margin-top: 0;
+  }
+
+  .timeline-text {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    color: var(--mid);
+    line-height: 1.75;
+    margin-bottom: 8px;
+  }
+
+  .week-list {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 12px 0;
+  }
+
+  .week-list li {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    color: var(--mid);
+    line-height: 1.75;
+    padding: 4px 0;
+  }
+
+  /* Table */
+  .expect-section {
+    padding-top: 32px;
+    margin-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .expect-title {
+    font-family: 'Lora', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  .timeline-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .timeline-table th {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--charcoal);
+    text-align: left;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline-table td {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    color: var(--mid);
+    padding: 12px 0;
+    border-bottom: 1px solid #f0ede8;
+    vertical-align: top;
+  }
+
+  .timeline-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .timeline-table td:first-child {
+    color: var(--charcoal);
+    padding-right: 24px;
+  }
+
+  /* Tips section */
+  .tips-section {
+    padding-top: 32px;
+    margin-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .tips-section-title {
+    font-family: 'Lora', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .tips-list {
+    list-style: disc;
+    padding-left: 20px;
+  }
+
+  .tips-list li {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    color: var(--mid);
+    line-height: 1.75;
+    padding: 4px 0;
+  }
+
+  @media (max-width: 480px) {
+    .week-title { font-size: 21px; }
+    .day-title { font-size: 16px; }
+    .timeline-text, .week-list li, .tips-list li { font-size: 15px; }
+    .expect-title, .tips-section-title { font-size: 21px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="meals.html">Meal Plan</a>
+    <a href="timeline.html" class="active">Timeline</a>
+  </nav>
+
+  <div class="header">
+    <div class="header-eyebrow">Post-surgical recovery · April 9, 2026</div>
+    <h1 class="header-title">Recovery<br>Timeline</h1>
+    <p class="header-subtitle">A realistic day-by-day breakdown for double jaw surgery (MMA/BSSO) recovery. Every body is different — this is a general guide based on typical outcomes.</p>
+  </div>
+
+  <!-- Week 1 -->
+  <div class="week-section">
+    <h2 class="week-title">Week 1: The Hardest Part</h2>
+
+    <h3 class="day-title">Day 0 (Surgery day)</h3>
+    <p class="timeline-text">Waking up is disorienting. Face feels enormous. Jaw is banded or wired. Nausea from anesthesia is common. You'll likely have a catheter, IV, and be in overnight. Breathing through your nose is difficult because of swelling — this is expected.</p>
+
+    <h3 class="day-title">Day 1</h3>
+    <p class="timeline-text">First full day in the hospital. Nurses will get you upright and walking short distances. Drooling is constant and uncontrollable. Ice packs running continuously. Pain is present but manageable with IV meds. Swallowing feels foreign. You'll be sent home if vitals are stable.</p>
+
+    <h3 class="day-title">Day 2–3</h3>
+    <p class="timeline-text">Peak swelling begins. Face will look dramatically different — puffy, distorted. Bruising spreads down the neck and chest. Talking is nearly impossible. Communication by whiteboard or phone typing. Sleeping upright (30–45°) is essential to manage swelling. Fatigue is extreme. Syringe or squeeze bottle feeding only — small amounts, very slowly.</p>
+
+    <h3 class="day-title">Day 4–5</h3>
+    <p class="timeline-text">Still near peak swelling. Some patients feel a slight emotional crash here — the novelty has worn off, discomfort is at its highest, and the timeline feels long. This is normal. Getting adequate calories is genuinely hard and important to prioritize.</p>
+
+    <h3 class="day-title">Day 6–7</h3>
+    <p class="timeline-text">Swelling may start to plateau. You'll feel marginally more alert. Hygiene routine (rinsing, gentle oral care) becomes more manageable. First post-op appointment usually around day 5–7 — surgeon checks healing, adjusts bands if needed.</p>
+  </div>
+
+  <!-- Week 2 -->
+  <div class="week-section">
+    <h2 class="week-title">Week 2: Turning a Corner</h2>
+
+    <h3 class="day-title">Days 8–10</h3>
+    <p class="timeline-text">Swelling starts visibly reducing. Bruising yellows and fades. Energy improves slightly. You may be able to communicate in short, mumbled sentences. Numbness in lips, chin, and cheeks is prominent — this is nerve recovery and will continue for months.</p>
+
+    <h3 class="day-title">Days 11–14</h3>
+    <p class="timeline-text">Most people feel meaningfully better by end of week 2. Appetite returns. Caloric intake becomes easier to maintain. Sleeping flat may become possible. Some people return to light desk work around day 10–14 if the job is low-stress.</p>
+  </div>
+
+  <!-- Weeks 3–4 -->
+  <div class="week-section">
+    <h2 class="week-title">Weeks 3–4: Functional Recovery</h2>
+    <ul class="week-list">
+      <li>Swelling is down ~50–60% but still noticeable, especially in the afternoon</li>
+      <li>Bands may be loosened to allow limited mouth opening</li>
+      <li>Soft foods (very mashed, no chewing) may be introduced depending on surgeon's protocol</li>
+      <li>Fatigue persists — your body is healing bone, which takes enormous energy</li>
+      <li>Mood often improves significantly in this window</li>
+    </ul>
+  </div>
+
+  <!-- Weeks 5–8 -->
+  <div class="week-section">
+    <h2 class="week-title">Weeks 5–8: Slow Normalization</h2>
+    <ul class="week-list">
+      <li>By week 6, most people look close to normal to others (remaining swelling is subtle and internal)</li>
+      <li>Soft chewable foods often cleared around 6–8 weeks</li>
+      <li>Numbness begins resolving unevenly — tingling is a good sign (nerve waking up)</li>
+      <li>Return to exercise: light walking by week 2–3, nothing strenuous until 6–8 weeks minimum</li>
+      <li>Final results (bone fully healed, swelling fully resolved) take 6–12 months</li>
+    </ul>
+  </div>
+
+  <!-- What to Expect -->
+  <div class="expect-section">
+    <h2 class="expect-title">What to Expect Throughout</h2>
+    <table class="timeline-table">
+      <thead>
+        <tr>
+          <th>Symptom</th>
+          <th>Timeline</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Peak swelling</td><td>Days 3–5</td></tr>
+        <tr><td>Swelling mostly resolved</td><td>6–8 weeks</td></tr>
+        <tr><td>Bruising gone</td><td>2–3 weeks</td></tr>
+        <tr><td>Numbness resolving</td><td>3–12 months</td></tr>
+        <tr><td>Bands/elastics removed</td><td>Varies, often 4–8 weeks</td></tr>
+        <tr><td>Soft food cleared</td><td>~6 weeks</td></tr>
+        <tr><td>Normal diet</td><td>3–4 months</td></tr>
+        <tr><td>Final result visible</td><td>6–12 months</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Practical Tips -->
+  <div class="tips-section">
+    <h2 class="tips-section-title">Practical Tips That Matter</h2>
+    <ul class="tips-list">
+      <li>Calories are medicine. Undereating slows healing significantly. Aim for 1,800–2,200+ cal/day even if it's exhausting to achieve</li>
+      <li>Upright sleeping — wedge pillow or recliner for at least the first 2 weeks</li>
+      <li>Oral hygiene is critical — the mouth environment changes dramatically post-surgery; rinse with saline after every feeding</li>
+      <li>Ice packs for the first 48–72 hours, then switch to heat after day 3</li>
+      <li>Have entertainment queued up — audiobooks, podcasts, shows. You won't be able to read comfortably for the first few days</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">Orthognathic surgery recovery · Alta Bates Berkeley · April 9, 2026</div>
+</div>
+</body>
+</html>
