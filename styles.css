@@ -34,6 +34,8 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+h1, h2, h3, p, li, td, th, div { text-wrap: pretty; }
+
 /* Enable optical sizing for Literata variable font */
 html { font-optical-sizing: auto; }
 
