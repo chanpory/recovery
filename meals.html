@@ -24,7 +24,7 @@
   }
 
   .stat-label {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -40,7 +40,7 @@
 
   .stat-unit {
     font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--light);
   }
 
@@ -72,7 +72,7 @@
 
   .meal-time {
     font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     color: var(--amber);
     min-width: 58px;
@@ -81,19 +81,19 @@
 
   .meal-time.rotation {
     color: var(--blue);
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .meal-name {
     font-family: 'Lora', serif;
-    font-size: 15px;
+    font-size: 16px;
     color: var(--charcoal);
     flex: 1;
     line-height: 1.3;
   }
 
   .rotation-pill {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.06em;
     background: var(--blue-light);
@@ -111,7 +111,7 @@
   }
 
   .macro {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     border-radius: 20px;
     padding: 3px 9px;
@@ -149,18 +149,18 @@
     gap: 12px;
     padding: 6px 0;
     border-bottom: 1px solid #f0ede8;
-    font-size: 13px;
+    font-size: 14px;
   }
   .ingredient:last-child { border-bottom: none; }
 
   .ing-name { color: var(--charcoal); flex: 1; }
   .ing-name.collagen { color: var(--sage); font-weight: 500; }
 
-  .ing-detail { color: var(--light); font-size: 12px; text-align: right; }
+  .ing-detail { color: var(--light); font-size: 13px; text-align: right; }
 
   .meal-note {
     margin-top: 12px;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--mid);
     font-style: italic;
     line-height: 1.6;
@@ -170,7 +170,7 @@
     margin-top: 10px;
     border-radius: 8px;
     padding: 10px 14px;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.6;
   }
   .alert-amber { background: var(--amber-light); color: #7a4f1e; }
@@ -196,7 +196,7 @@
     gap: 12px;
     padding: 12px 0;
     border-bottom: 1px solid #f0ede8;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--mid);
     line-height: 1.6;
   }
@@ -463,7 +463,7 @@ meals.forEach((meal, i) => {
         <span class="chevron" id="chevron-${i}">▼</span>
       </div>
       <div class="meal-detail" id="detail-${i}">
-        ${meal.rotationNote ? `<p style="font-size:12px;color:var(--blue);font-weight:500;padding:10px 0 4px;font-style:normal;">${meal.rotationNote}</p>` : ''}
+        ${meal.rotationNote ? `<p style="font-size:13px;color:var(--blue);font-weight:500;padding:10px 0 4px;font-style:normal;">${meal.rotationNote}</p>` : ''}
         <div class="ingredients">
           ${meal.ingredients.map(ing => `
             <div class="ingredient">
