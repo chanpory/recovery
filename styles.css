@@ -37,6 +37,7 @@ body {
   margin-bottom: 32px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border);
+  align-items: center;
 }
 
 .site-nav a {
@@ -52,6 +53,43 @@ body {
 
 .site-nav a:hover { color: var(--charcoal); }
 .site-nav a.active { color: var(--amber); }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--charcoal);
+}
+
+.nav-toggle svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .nav-toggle { display: block; }
+
+  .site-nav {
+    flex-wrap: wrap;
+  }
+
+  .site-nav a {
+    display: none;
+  }
+
+  .site-nav.open a {
+    display: block;
+  }
+
+  .site-nav.open {
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+  }
+}
 
 /* Header */
 .header {
