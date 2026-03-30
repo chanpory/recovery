@@ -69,12 +69,8 @@ body {
   display: block;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .nav-toggle { display: block; }
-
-  .site-nav {
-    flex-wrap: wrap;
-  }
 
   .site-nav a {
     display: none;
@@ -151,7 +147,7 @@ body {
 .fn-green { background: var(--sage-light); color: var(--sage); }
 .fn-amber { background: var(--amber-light); color: #7a4f1e; }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .page { padding: 32px 16px 60px; }
   .header-title { font-size: 28px; }
 }
