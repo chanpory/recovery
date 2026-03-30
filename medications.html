@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medications — Recovery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .med-section {
+    padding-top: 32px;
+    margin-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .med-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .med-subtitle {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-top: 20px;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .med-text {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    color: var(--charcoal);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .med-list {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 12px 0;
+  }
+
+  .med-list li {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    color: var(--charcoal);
+    line-height: 1.6;
+    padding: 4px 0;
+  }
+
+  .warning-box {
+    background: var(--amber-light);
+    border: 1px solid #e8b870;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 8px;
+  }
+
+  .warning-box-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 8px;
+  }
+
+  .warning-box-text {
+    font-family: 'Source Serif 4', serif;
+    font-size: 17px;
+    color: #7a4f1e;
+    line-height: 1.6;
+  }
+
+  .med-drug-name {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+
+  .med-generic {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--mid);
+    font-weight: 400;
+    margin-left: 6px;
+  }
+
+  @media (max-width: 640px) {
+    .med-title { font-size: 22px; }
+    .med-subtitle { font-size: 17px; }
+    .med-text { font-size: 17px; }
+    .med-list li { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="meals.html">Meal plan</a>
+    <a href="medications.html" class="active">Medications</a>
+    <a href="post-op-care.html">Post-op care</a>
+    <a href="appointments.html">Appointments</a>
+    <a href="contacts.html">Contacts</a>
+  </nav>
+
+  <div class="header" style="border-bottom: none; padding-bottom: 0;">
+    <h1 class="header-title">Medications</h1>
+  </div>
+
+  <div class="warning-box" style="margin-top: 24px;">
+    <div class="warning-box-label">Critical safety note</div>
+    <div class="warning-box-text">Do not take Percocet and Klonopin at the same time. Follow Dr. Movahed's pain management schedule exactly. Log every dose and the time it was given.</div>
+  </div>
+
+  <!-- Pain management -->
+  <div class="med-section">
+    <h2 class="med-title">Pain management</h2>
+    <p class="med-text"><span class="med-drug-name">Percocet</span><span class="med-generic">(oxycodone/acetaminophen)</span></p>
+    <ul class="med-list">
+      <li>Take on schedule as directed — don't wait for pain to escalate before taking a dose.</li>
+      <li>Log every dose on the whiteboard: medication name, dose, and exact time given.</li>
+      <li>Never combine with Klonopin. The two must not be taken at the same time under any circumstances.</li>
+    </ul>
+  </div>
+
+  <!-- Muscle relaxer -->
+  <div class="med-section">
+    <h2 class="med-title">Muscle relaxer</h2>
+    <p class="med-text"><span class="med-drug-name">Klonopin</span><span class="med-generic">(clonazepam)</span></p>
+    <ul class="med-list">
+      <li>Minimum 1 month post-op. Some patients need longer — follow Dr. Movahed's guidance.</li>
+      <li>Must be properly tapered off. Never stop abruptly — this can cause serious withdrawal effects.</li>
+      <li>Do not take at the same time as Percocet.</li>
+    </ul>
+  </div>
+
+  <!-- Antibiotic -->
+  <div class="med-section">
+    <h2 class="med-title">Antibiotic</h2>
+    <p class="med-text"><span class="med-drug-name">Augmentin</span><span class="med-generic">(amoxicillin/clavulanic acid)</span></p>
+    <ul class="med-list">
+      <li>Fill the prescription immediately after hospital discharge — do not wait.</li>
+      <li>Complete the entire course. Do not stop early even if I'm feeling better.</li>
+    </ul>
+  </div>
+
+  <!-- Oral rinse -->
+  <div class="med-section">
+    <h2 class="med-title">Oral rinse</h2>
+    <p class="med-text"><span class="med-drug-name">Peridex</span><span class="med-generic">(chlorhexidine gluconate 0.12%)</span></p>
+    <ul class="med-list">
+      <li>Swish and spit 3 times daily for the first 2 weeks.</li>
+      <li>After every meal: rinse with warm salt water first, then follow with Peridex.</li>
+      <li>This routine is critical for preventing infection around the sutures.</li>
+    </ul>
+  </div>
+
+  <!-- Sinus care -->
+  <div class="med-section">
+    <h2 class="med-title">Sinus care</h2>
+    <p class="med-text">Congestion is normal and can last for months after MMA surgery.</p>
+
+    <h3 class="med-subtitle">NeilMed sinus rinse</h3>
+    <ul class="med-list">
+      <li>Start 1 week post-op.</li>
+      <li>Use in the shower — it's easier to manage and less mess.</li>
+    </ul>
+
+    <h3 class="med-subtitle">Sudafed-D and Flonase</h3>
+    <ul class="med-list">
+      <li>Take both twice daily for congestion.</li>
+    </ul>
+
+    <h3 class="med-subtitle">Dairy</h3>
+    <ul class="med-list">
+      <li>Avoid dairy for the first month — it increases mucus production and worsens congestion.</li>
+    </ul>
+  </div>
+
+  <!-- Supplements -->
+  <div class="med-section">
+    <h2 class="med-title">Supplements</h2>
+
+    <h3 class="med-subtitle">Vitamin C 500mg</h3>
+    <ul class="med-list">
+      <li>Take twice daily.</li>
+      <li>Always take alongside collagen — Vitamin C is required for collagen synthesis and significantly enhances absorption.</li>
+    </ul>
+
+    <h3 class="med-subtitle">Multivitamins</h3>
+    <ul class="med-list">
+      <li>Take twice daily.</li>
+    </ul>
+
+    <h3 class="med-subtitle">Probiotics</h3>
+    <ul class="med-list">
+      <li>Take as directed. Especially important while on Augmentin to maintain gut health.</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">Orthognathic surgery recovery · Alta Bates Berkeley · April 9, 2026</div>
+</div>
+</body>
+</html>

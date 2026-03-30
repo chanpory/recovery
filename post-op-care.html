@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post-op care — Recovery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .care-section {
+    padding-top: 32px;
+    margin-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .care-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .care-subtitle {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-top: 20px;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .care-text {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    color: var(--charcoal);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .care-list {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 12px 0;
+  }
+
+  .care-list li {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    color: var(--charcoal);
+    line-height: 1.6;
+    padding: 4px 0;
+  }
+
+  /* Milestones table — matches timeline page pattern */
+  .milestones-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .milestones-table th {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--charcoal);
+    text-align: left;
+    padding: 8px 0;
+    border-bottom: 1px solid #e8e2d8;
+  }
+
+  .milestones-table td {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    color: var(--charcoal);
+    padding: 8px 0;
+    border-bottom: 1px solid #e8e2d8;
+    vertical-align: top;
+  }
+
+  .milestones-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .milestones-table td:first-child {
+    padding-right: 24px;
+  }
+
+  /* Emergency call-out */
+  .emergency-box {
+    background: var(--amber-light);
+    border: 1px solid #e8b870;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+
+  .emergency-box-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 8px;
+  }
+
+  .emergency-number {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #7a4f1e;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .emergency-number:hover {
+    color: var(--amber);
+  }
+
+  .emergency-desc {
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    color: #7a4f1e;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    .care-title { font-size: 22px; }
+    .care-subtitle { font-size: 17px; }
+    .care-text { font-size: 17px; }
+    .care-list li { font-size: 17px; }
+    .milestones-table th,
+    .milestones-table td { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="meals.html">Meal plan</a>
+    <a href="medications.html">Medications</a>
+    <a href="post-op-care.html" class="active">Post-op care</a>
+    <a href="appointments.html">Appointments</a>
+    <a href="contacts.html">Contacts</a>
+  </nav>
+
+  <div class="header" style="border-bottom: none; padding-bottom: 0;">
+    <h1 class="header-title">Post-op care</h1>
+  </div>
+
+  <!-- In the hospital -->
+  <div class="care-section" style="margin-top: 24px;">
+    <h2 class="care-title">In the hospital</h2>
+    <p class="care-text">Expect a 2–3 day hospital stay. Here's what happens during that time.</p>
+    <ul class="care-list">
+      <li>The head wrap and nasal trumpets are removed 24 hours after surgery.</li>
+      <li>A sore throat from the endotracheal tube is normal — it fades in a day or two.</li>
+      <li>A physical therapist visits daily. The goal is 6 short walks around the floor per day before discharge.</li>
+      <li>Nursing staff will help me get out of bed — never let me try alone.</li>
+      <li>A registered dietician visits daily to monitor intake. Everything goes through the squeeze bottle.</li>
+    </ul>
+
+    <h3 class="care-subtitle">Showers</h3>
+    <ul class="care-list">
+      <li>Nursing staff must assist with every shower.</li>
+      <li>Face away from the shower head at all times.</li>
+      <li>Remain seated throughout.</li>
+    </ul>
+
+    <h3 class="care-subtitle">Ice</h3>
+    <ul class="care-list">
+      <li>30 minutes on, 30 minutes off — continuously for pain and swelling management.</li>
+    </ul>
+  </div>
+
+  <!-- Going home -->
+  <div class="care-section">
+    <h2 class="care-title">Going home</h2>
+    <p class="care-text">Discharge requires all of the following:</p>
+    <ul class="care-list">
+      <li>Someone must be at the hospital at discharge and able to take care of me at home.</li>
+      <li>Pain score below 5 on oral medications.</li>
+      <li>At least 1–2L of fluid per day.</li>
+      <li>At least 60–80g of protein per day (the meal plan targets 90g+).</li>
+      <li>Adequate mobility — 6 walks around the floor per day.</li>
+      <li>Adequate voiding.</li>
+    </ul>
+    <p class="care-text" style="margin-top: 16px;">Dr. Movahed's office will call 1–3 days before surgery to confirm the arrival time at the hospital.</p>
+  </div>
+
+  <!-- Daily care at home -->
+  <div class="care-section">
+    <h2 class="care-title">Daily care at home</h2>
+
+    <h3 class="care-subtitle">Ice</h3>
+    <p class="care-text">30 minutes on, 30 minutes off. Continue for swelling and pain management through the first days home.</p>
+
+    <h3 class="care-subtitle">Sleep position</h3>
+    <ul class="care-list">
+      <li>Propped up at 35–45° for the first month — use a wedge pillow or recliner.</li>
+      <li>After 1 month: can sleep flat on back.</li>
+      <li>After 1.5 months: can sleep on side.</li>
+    </ul>
+
+    <h3 class="care-subtitle">Nutrition</h3>
+    <ul class="care-list">
+      <li>All nutrition through a squeeze bottle for the first 2 weeks — no exceptions.</li>
+      <li>Track protein on the whiteboard after every feeding. Minimum 90g per day.</li>
+      <li>If below 90g by 9:00 PM, the nightcap is not optional.</li>
+    </ul>
+
+    <h3 class="care-subtitle">Oral hygiene</h3>
+    <ul class="care-list">
+      <li>After every meal: warm salt water rinse first, then Peridex.</li>
+      <li>Dr. Movahed's staff brushes my teeth during post-op appointments and changes rubber bands daily.</li>
+      <li>No Waterpik for 2 months after surgery.</li>
+    </ul>
+  </div>
+
+  <!-- Milestones -->
+  <div class="care-section">
+    <h2 class="care-title">Milestones</h2>
+    <table class="milestones-table">
+      <thead>
+        <tr>
+          <th>Milestone</th>
+          <th>When</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Ear sutures removed</td><td>7–8 days post-op</td></tr>
+        <tr><td>Mouth sutures</td><td>Dissolve on their own</td></tr>
+        <tr><td>Light walking allowed</td><td>2–3 weeks</td></tr>
+        <tr><td>Physical therapy begins</td><td>4–6 weeks</td></tr>
+        <tr><td>Soft food cleared</td><td>~2 weeks (per Dr. Movahed)</td></tr>
+        <tr><td>Orthodontist visit</td><td>6 weeks post-op</td></tr>
+        <tr><td>Return to work</td><td>6–8 weeks</td></tr>
+        <tr><td>Rubber bands minimum</td><td>8 weeks</td></tr>
+        <tr><td>Myofunctional therapy</td><td>2 months post-op</td></tr>
+        <tr><td>No Waterpik until</td><td>2 months post-op</td></tr>
+        <tr><td>No lifting &gt;30 lbs until</td><td>3 months post-op</td></tr>
+        <tr><td>Palatal splint removed</td><td>3–4 months</td></tr>
+        <tr><td>80% swelling resolved</td><td>~3 months</td></tr>
+        <tr><td>Full exercise cleared</td><td>4–6 months</td></tr>
+        <tr><td>Full result visible</td><td>6–12 months</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- When to call Dr. Movahed -->
+  <div class="care-section">
+    <h2 class="care-title">When to call Dr. Movahed</h2>
+
+    <div class="emergency-box">
+      <div class="emergency-box-label">Emergency cell</div>
+      <a href="tel:+17323091589" class="emergency-number">732-309-1589</a>
+      <div class="emergency-desc">Call or text for any urgent concern outside office hours.</div>
+    </div>
+
+    <p class="care-text">Call immediately if I have any of the following:</p>
+    <ul class="care-list">
+      <li>Sudden increasing swelling after it had been going down.</li>
+      <li>Fever.</li>
+      <li>Difficulty breathing.</li>
+      <li>Persistent bleeding that won't stop.</li>
+      <li>Foul taste, foul smell, or visible pus.</li>
+      <li>New bite shift or hardware poking through tissue.</li>
+      <li>Severe pain not controlled by medications.</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">Orthognathic surgery recovery · Alta Bates Berkeley · April 9, 2026</div>
+</div>
+</body>
+</html>
