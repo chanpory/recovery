@@ -1,9 +1,18 @@
 /* Self-hosted fonts */
-@font-face { font-family: 'Literata'; src: url('fonts/literata-400.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Literata'; src: url('fonts/literata-500.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Literata'; src: url('fonts/literata-600.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Literata'; src: url('fonts/literata-700.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Literata'; src: url('fonts/literata-italic-400.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face {
+  font-family: 'Literata';
+  src: url('fonts/literata-variable.ttf') format('truetype');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Literata';
+  src: url('fonts/literata-variable-italic.ttf') format('truetype');
+  font-weight: 200 900;
+  font-style: italic;
+  font-display: swap;
+}
 @font-face { font-family: 'DM Sans'; src: url('fonts/dm-sans-300.ttf') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
 @font-face { font-family: 'DM Sans'; src: url('fonts/dm-sans-400.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: 'DM Sans'; src: url('fonts/dm-sans-500.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
@@ -24,6 +33,9 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Enable optical sizing for Literata variable font */
+html { font-optical-sizing: auto; }
 
 body {
   background: var(--cream);
