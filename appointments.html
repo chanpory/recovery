@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appointments — Recovery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .appointments {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .appt {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: baseline;
+  }
+
+  .appt:last-child { border-bottom: none; }
+
+  .appt-date {
+    font-family: 'Source Serif 4', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--charcoal);
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+
+  .appt-details {
+    flex: 1;
+  }
+
+  .appt-desc {
+    font-size: 15px;
+    color: var(--charcoal);
+    line-height: 1.5;
+  }
+
+  .appt-location {
+    font-size: 13px;
+    color: var(--mid);
+    margin-top: 2px;
+  }
+
+  .appt-driver {
+    font-size: 13px;
+    color: var(--sage);
+    margin-top: 2px;
+  }
+
+  .appt-tbd {
+    font-size: 13px;
+    color: var(--amber);
+    margin-top: 2px;
+  }
+
+  .appt-badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 20px;
+    padding: 2px 8px;
+    white-space: nowrap;
+    display: inline-block;
+    margin-left: 8px;
+    position: relative;
+    top: -1px;
+  }
+
+  .badge-surgery {
+    background: var(--amber-light);
+    color: var(--amber);
+  }
+
+  .badge-followup {
+    background: var(--blue-light);
+    color: var(--blue);
+  }
+
+  .section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--light);
+    padding-top: 28px;
+    margin-bottom: 4px;
+  }
+
+  @media (max-width: 480px) {
+    .appt { flex-direction: column; gap: 2px; }
+    .appt-date { min-width: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="meals.html">Meal plan</a>
+    <a href="contacts.html">Contacts</a>
+    <a href="appointments.html" class="active">Appointments</a>
+  </nav>
+
+  <div class="header" style="border-bottom: none;">
+    <h1 class="header-title">Appointments</h1>
+  </div>
+
+  <div class="appointments">
+
+    <div class="section-label" style="padding-top: 0;">Surgery</div>
+
+    <div class="appt">
+      <div class="appt-date">Wed, Apr 9</div>
+      <div class="appt-details">
+        <div class="appt-desc">Double jaw surgery (MMA/BSSO) <span class="appt-badge badge-surgery">Surgery</span></div>
+        <div class="appt-location">Alta Bates Summit Medical Center · 2450 Ashby Ave, Berkeley</div>
+      </div>
+    </div>
+
+    <div class="section-label">Post-op follow-ups · Dr. Movahed</div>
+
+    <div class="appt">
+      <div class="appt-date">Mon, Apr 13 · 9:00 AM</div>
+      <div class="appt-details">
+        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 4</span></div>
+        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
+        <div class="appt-tbd">Driver TBD</div>
+      </div>
+    </div>
+
+    <div class="appt">
+      <div class="appt-date">Tue, Apr 14 · 9:00 AM</div>
+      <div class="appt-details">
+        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 5</span></div>
+        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
+        <div class="appt-tbd">Driver TBD</div>
+      </div>
+    </div>
+
+    <div class="appt">
+      <div class="appt-date">Wed, Apr 15 · 8:30 AM</div>
+      <div class="appt-details">
+        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 6</span></div>
+        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
+        <div class="appt-driver">Sean driving</div>
+      </div>
+    </div>
+
+    <div class="appt">
+      <div class="appt-date">Thu, Apr 16 · 8:30 AM</div>
+      <div class="appt-details">
+        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 7</span></div>
+        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
+        <div class="appt-tbd">Driver TBD</div>
+      </div>
+    </div>
+
+    <div class="appt">
+      <div class="appt-date">Fri, Apr 17 · 8:00 AM</div>
+      <div class="appt-details">
+        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 8</span></div>
+        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
+        <div class="appt-driver">Sean driving</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-notes" style="margin-top: 24px;">
+    <div class="footer-note fn-amber">You cannot drive yourself for at least 2 weeks post-surgery, and not while taking Percocet. All appointments need a confirmed driver.</div>
+  </div>
+
+  <div class="page-footer">Orthognathic surgery recovery · Alta Bates Berkeley · April 9, 2026</div>
+</div>
+</body>
+</html>
