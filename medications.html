@@ -9,7 +9,7 @@
 <meta property="og:url" content="https://chanpory.github.io/recovery/medications.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Medications — Chanpory’s recovery guide</title>
-<link rel="stylesheet" href="styles.css?v=11">
+<link rel="stylesheet" href="styles.css?v=12">
 <style>
   .med-section {
     padding-top: 32px;
@@ -98,6 +98,42 @@
     margin-left: 6px;
   }
 
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .schedule-table th {
+    font-family: 'Literata', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--charcoal);
+    text-align: left;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .schedule-table td {
+    font-family: 'Literata', serif;
+    font-size: 15px;
+    color: var(--charcoal);
+    padding: 8px 0;
+    border-bottom: 1px solid #e8e2d8;
+    vertical-align: top;
+  }
+
+  .schedule-table td:first-child {
+    color: var(--amber);
+    font-weight: 500;
+    min-width: 90px;
+    padding-right: 16px;
+    white-space: nowrap;
+  }
+
+  .schedule-table tr:last-child td {
+    border-bottom: none;
+  }
+
   @media (max-width: 640px) {
     .med-title { font-size: 22px; }
     .med-subtitle { font-size: 17px; }
@@ -130,24 +166,66 @@
     <div class="warning-box-text">Do not take Percocet and Klonopin at the same time. Follow Dr. Movahed’s pain management schedule exactly. Log every dose and the time it was given.</div>
   </div>
 
+
+  <!-- Daily schedule -->
+  <div class="med-section">
+    <h2 class="med-title">Daily schedule</h2>
+    <p class="med-text" style="margin-bottom: 16px;">This is a suggested schedule based on my prescriptions. Adjust times as needed, but maintain the intervals between doses.</p>
+
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Medication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>6:00 AM</td><td>Percocet (½–1 tablet)</td></tr>
+        <tr><td>7:00 AM</td><td>Augmentin (5ml) + Peridex rinse after brushing</td></tr>
+        <tr><td>8:00 AM</td><td>Thorne Vitamin C + Ritual multivitamin + Probiotics</td></tr>
+        <tr><td>10:00 AM</td><td>Percocet (½–1 tablet) if needed</td></tr>
+        <tr><td>12:00 PM</td><td>Zofran (1 dissolving tablet) if nauseous</td></tr>
+        <tr><td>2:00 PM</td><td>Percocet (½–1 tablet) if needed</td></tr>
+        <tr><td>6:00 PM</td><td>Percocet (½–1 tablet) if needed. Zofran if nauseous.</td></tr>
+        <tr><td>7:00 PM</td><td>Augmentin (5ml) + Peridex rinse after brushing</td></tr>
+        <tr><td>8:00 PM</td><td>Thorne Vitamin C</td></tr>
+        <tr><td>10:00 PM</td><td>Klonopin (1 tablet) for sleep. No Percocet at bedtime.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <!-- Pain management -->
   <div class="med-section">
     <h2 class="med-title">Pain management</h2>
-    <p class="med-text"><span class="med-drug-name">Percocet</span><span class="med-generic">(oxycodone/acetaminophen)</span></p>
+    <p class="med-text"><span class="med-drug-name">Percocet</span><span class="med-generic">(oxycodone-acetaminophen 5-325mg tablet)</span></p>
     <ul class="med-list">
-      <li>Take on schedule as directed — don’t wait for pain to escalate before taking a dose.</li>
+      <li>½ to 1 tablet by mouth every 4 to 6 hours as needed for pain. Maximum 4 tablets per day.</li>
+      <li>Take on schedule, especially the first few days. Don’t wait for pain to spike before taking a dose.</li>
       <li>Log every dose on the whiteboard: medication name, dose, and exact time given.</li>
       <li>Never combine with Klonopin. The two must not be taken at the same time under any circumstances.</li>
+      <li>0 refills. This is a controlled substance.</li>
+    </ul>
+  </div>
+
+  <!-- Anti-nausea -->
+  <div class="med-section">
+    <h2 class="med-title">Anti-nausea</h2>
+    <p class="med-text"><span class="med-drug-name">Zofran ODT</span><span class="med-generic">(ondansetron 4mg dissolving tablet)</span></p>
+    <ul class="med-list">
+      <li>Dissolve 1 tablet on the tongue every 6 hours as needed for nausea.</li>
+      <li>No water needed. The tablet dissolves on its own.</li>
+      <li>20-day supply.</li>
     </ul>
   </div>
 
   <!-- Muscle relaxer -->
   <div class="med-section">
     <h2 class="med-title">Muscle relaxer</h2>
-    <p class="med-text"><span class="med-drug-name">Klonopin</span><span class="med-generic">(clonazepam)</span></p>
+    <p class="med-text"><span class="med-drug-name">Klonopin</span><span class="med-generic">(clonazepam 1mg tablet)</span></p>
     <ul class="med-list">
-      <li>Minimum 1 month post-op. Some patients need longer — follow Dr. Movahed’s guidance.</li>
-      <li>Must be properly tapered off. Never stop abruptly — this can cause serious withdrawal effects.</li>
+      <li>1 tablet at night for sleep and jaw clenching.</li>
+      <li>30-day supply. Minimum 1 month post-op. Some patients need longer.</li>
+      <li>Must be properly tapered off. Never stop abruptly. This can cause serious withdrawal effects.</li>
       <li>Do not take at the same time as Percocet.</li>
     </ul>
   </div>
@@ -155,21 +233,23 @@
   <!-- Antibiotic -->
   <div class="med-section">
     <h2 class="med-title">Antibiotic</h2>
-    <p class="med-text"><span class="med-drug-name">Augmentin</span><span class="med-generic">(amoxicillin/clavulanic acid)</span></p>
+    <p class="med-text"><span class="med-drug-name">Augmentin</span><span class="med-generic">(amoxicillin-clavulanate 600-42.9mg/5ml suspension)</span></p>
     <ul class="med-list">
-      <li>Fill the prescription immediately after hospital discharge — do not wait.</li>
-      <li>Complete the entire course. Do not stop early even if I’m feeling better.</li>
+      <li>5ml by mouth every 12 hours. 10-day supply.</li>
+      <li>This is a liquid suspension. Shake well before each dose.</li>
+      <li>Fill immediately after hospital discharge. Do not wait.</li>
+      <li>Complete the entire 10-day course. Do not stop early even if I’m feeling better.</li>
     </ul>
   </div>
 
   <!-- Oral rinse -->
   <div class="med-section">
     <h2 class="med-title">Oral rinse</h2>
-    <p class="med-text"><span class="med-drug-name">Peridex</span><span class="med-generic">(chlorhexidine gluconate 0.12%)</span></p>
+    <p class="med-text"><span class="med-drug-name">Peridex</span><span class="med-generic">(chlorhexidine gluconate 0.12% mouthwash)</span></p>
     <ul class="med-list">
-      <li>Swish and spit 3 times daily for the first 2 weeks.</li>
+      <li>15ml (1 capful) swished for 30 seconds, morning and evening after brushing. Then spit.</li>
       <li>After every meal: rinse with warm salt water first, then follow with Peridex.</li>
-      <li>This routine is critical for preventing infection around the sutures.</li>
+      <li>30-day supply. Critical for preventing infection around the sutures.</li>
     </ul>
   </div>
 
