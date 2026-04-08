@@ -223,8 +223,8 @@
     container.innerHTML = schedule.map((row, i) => {
       const done = taken[i] === true;
       return `
-        <div onclick="toggle(${i})" style="display: flex; align-items: baseline; gap: 12px; padding: 10px 0; border-bottom: 1px solid #e8e2d8; cursor: pointer; user-select: none; opacity: ${done ? '0.45' : '1'}; transition: opacity 0.15s;">
-          <span style="font-size: 18px; flex-shrink: 0; line-height: 1; position: relative; top: 1px;">${done ? '\u25CF' : '\u25CB'}</span>
+        <div onclick="toggle(${i})" style="display: flex; align-items: baseline; gap: 10px; padding: 10px 0; border-bottom: 1px solid #e8e2d8; cursor: pointer; user-select: none; opacity: ${done ? '0.45' : '1'}; transition: opacity 0.15s;">
+          <span style="width: 20px; flex-shrink: 0; text-align: center; font-size: 16px; line-height: 1;">${done ? '\u2713' : '\u25CB'}</span>
           <span style="font-family: 'Literata', serif; font-size: 15px; color: var(--amber); font-weight: 500; min-width: 80px; flex-shrink: 0;">${row.time}</span>
           <span style="font-family: 'Literata', serif; font-size: 15px; color: var(--charcoal); ${done ? 'text-decoration: line-through; text-decoration-color: var(--light);' : ''}">${row.med}</span>
         </div>`;
