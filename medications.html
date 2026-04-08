@@ -180,28 +180,34 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
+  const SUPABASE_URL = 'https://zzubrmsucnizlaqdrqdv.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp6dWJybXN1Y25pemxhcWRycWR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MjgyMDIsImV4cCI6MjA5MTIwNDIwMn0.gmYxF8ItYH9VOLARzgMyj43oXKr9lvluBuRc-PQDuK0';
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
   const schedule = [
-    { time: "8:00 AM", med: "Percocet (½–1 tablet)" },
-    { time: "9:00 AM", med: "Augmentin (5ml) + Peridex rinse after brushing" },
-    { time: "10:00 AM", med: "Thorne Vitamin C + Ritual multivitamin + Probiotics" },
-    { time: "12:00 PM", med: "Percocet (½–1 tablet) if needed" },
-    { time: "12:00 PM", med: "Zofran (1 dissolving tablet) if nauseous" },
-    { time: "2:00 PM", med: "Percocet (½–1 tablet) if needed" },
-    { time: "6:00 PM", med: "Percocet (½–1 tablet) if needed. Zofran if nauseous." },
-    { time: "7:00 PM", med: "Augmentin (5ml) + Peridex rinse after brushing" },
-    { time: "8:00 PM", med: "Thorne Vitamin C" },
-    { time: "10:00 PM", med: "Klonopin (1 tablet) for sleep. No Percocet at bedtime." }
+    { time: "8:00 AM", name: "Percocet", detail: "\u00bd\u20131 tablet" },
+    { time: "9:00 AM", name: "Augmentin + Peridex", detail: "5ml Augmentin, then rinse with Peridex after brushing" },
+    { time: "10:00 AM", name: "Vitamin C + Ritual + Probiotics", detail: "Thorne Vitamin C, Ritual multivitamin, Probiotics" },
+    { time: "12:00 PM", name: "Percocet", detail: "\u00bd\u20131 tablet if needed" },
+    { time: "12:00 PM", name: "Zofran", detail: "1 dissolving tablet if nauseous" },
+    { time: "2:00 PM", name: "Percocet", detail: "\u00bd\u20131 tablet if needed" },
+    { time: "6:00 PM", name: "Percocet + Zofran", detail: "\u00bd\u20131 Percocet if needed, Zofran if nauseous" },
+    { time: "7:00 PM", name: "Augmentin + Peridex", detail: "5ml Augmentin, then rinse with Peridex after brushing" },
+    { time: "8:00 PM", name: "Vitamin C", detail: "Thorne Vitamin C" },
+    { time: "10:00 PM", name: "Flonase + Astepro", detail: "Nasal sprays" },
+    { time: "10:00 PM", name: "Klonopin", detail: "1 tablet for sleep. No Percocet at bedtime." }
   ];
 
   function getDisplayDate() {
     const now = new Date();
-    const saturday = new Date(2026, 3, 11); // Apr 11, 2026
+    const saturday = new Date(2026, 3, 11);
     return now < saturday ? saturday : now;
   }
 
   function getDateKey(d) {
-    return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
   }
 
   function formatDate(d) {
@@ -212,38 +218,63 @@
 
   const displayDate = getDisplayDate();
   const dateKey = getDateKey(displayDate);
-  const storageKey = 'med-schedule-' + dateKey;
-
   document.getElementById('schedule-date').textContent = formatDate(displayDate);
 
-  let taken = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  let taken = {};
 
   function render() {
     const container = document.getElementById('schedule-rows');
     container.innerHTML = schedule.map((row, i) => {
       const done = taken[i] === true;
       return `
-        <div onclick="toggle(${i})" style="display: flex; align-items: baseline; gap: 10px; padding: 10px 0; border-bottom: 1px solid #e8e2d8; cursor: pointer; user-select: none; opacity: ${done ? '0.45' : '1'}; transition: opacity 0.15s;">
-          <span style="width: 20px; flex-shrink: 0; text-align: center; font-size: 16px; line-height: 1;">${done ? '\u2713' : '\u25CB'}</span>
+        <div onclick="toggle(${i})" style="display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #e8e2d8; cursor: pointer; user-select: none; opacity: ${done ? '0.45' : '1'}; transition: opacity 0.15s;">
+          <span style="width: 22px; height: 22px; margin-top: 2px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1.5px solid ${done ? 'var(--sage)' : 'var(--light)'}; background: ${done ? 'var(--sage)' : 'transparent'}; transition: all 0.15s;">${done ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"/></svg>' : ''}</span>
           <span style="font-family: 'Literata', serif; font-size: 15px; color: var(--amber); font-weight: 500; min-width: 80px; flex-shrink: 0;">${row.time}</span>
-          <span style="font-family: 'Literata', serif; font-size: 15px; color: var(--charcoal); ${done ? 'text-decoration: line-through; text-decoration-color: var(--light);' : ''}">${row.med}</span>
+          <span style="font-family: 'Literata', serif; font-size: 15px; color: var(--charcoal); ${done ? 'text-decoration: line-through; text-decoration-color: var(--light);' : ''}">
+            <span style="font-weight: 500;">${row.name}</span><br>
+            <span style="font-size: 13px; color: var(--mid); font-weight: 400; text-decoration: none; display: inline-block;">${row.detail}</span>
+          </span>
         </div>`;
     }).join('');
   }
 
-  function toggle(i) {
-    taken[i] = !taken[i];
-    localStorage.setItem(storageKey, JSON.stringify(taken));
+  async function loadFromDb() {
+    const { data } = await sb.from('med_checks').select('slot_index, taken').eq('date', dateKey);
+    taken = {};
+    if (data) data.forEach(r => { taken[r.slot_index] = r.taken; });
     render();
   }
 
-  document.getElementById('reset-btn').addEventListener('click', () => {
-    taken = {};
-    localStorage.removeItem(storageKey);
+  async function toggle(i) {
+    taken[i] = !taken[i];
     render();
+    await sb.from('med_checks').upsert(
+      { date: dateKey, slot_index: i, taken: taken[i], updated_at: new Date().toISOString() },
+      { onConflict: 'date,slot_index' }
+    );
+  }
+
+  document.getElementById('reset-btn').addEventListener('click', async () => {
+    taken = {};
+    render();
+    await sb.from('med_checks').delete().eq('date', dateKey);
   });
 
-  render();
+  // Real-time sync across devices
+  sb.channel('med-updates')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'med_checks' }, (payload) => {
+      if (payload.new && payload.new.date === dateKey) {
+        taken[payload.new.slot_index] = payload.new.taken;
+        render();
+      }
+      if (payload.eventType === 'DELETE' && payload.old && payload.old.date === dateKey) {
+        delete taken[payload.old.slot_index];
+        render();
+      }
+    })
+    .subscribe();
+
+  loadFromDb();
   </script>
 
   <!-- Pain management -->
@@ -316,11 +347,10 @@
       <li>Use while seated at the sink. Do not use in the shower — risk of slipping while on pain medications.</li>
     </ul>
 
-    <h3 class="med-subtitle">Allegra-D, Flonase, and Astepro</h3>
+    <h3 class="med-subtitle">Flonase and Astepro</h3>
     <ul class="med-list">
-      <li>Allegra-D: take twice daily for congestion.</li>
-      <li>Flonase: use twice daily.</li>
-      <li>Astepro (azelastine nasal spray): use as directed for allergies.</li>
+      <li>Flonase: use at bedtime.</li>
+      <li>Astepro (azelastine nasal spray): use at bedtime for allergies.</li>
     </ul>
 
     <h3 class="med-subtitle">Dairy</h3>
