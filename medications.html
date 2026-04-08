@@ -187,17 +187,17 @@
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   const schedule = [
-    { time: "8:00 AM", name: "Percocet", detail: "\u00bd\u20131 tablet" },
-    { time: "9:00 AM", name: "Augmentin + Peridex", detail: "5ml Augmentin, then rinse with Peridex after brushing" },
-    { time: "10:00 AM", name: "Vitamin C + Ritual + Probiotics", detail: "Thorne Vitamin C, Ritual multivitamin, Probiotics" },
-    { time: "12:00 PM", name: "Percocet", detail: "\u00bd\u20131 tablet if needed" },
-    { time: "12:00 PM", name: "Zofran", detail: "1 dissolving tablet if nauseous" },
-    { time: "2:00 PM", name: "Percocet", detail: "\u00bd\u20131 tablet if needed" },
-    { time: "6:00 PM", name: "Percocet + Zofran", detail: "\u00bd\u20131 Percocet if needed, Zofran if nauseous" },
-    { time: "7:00 PM", name: "Augmentin + Peridex", detail: "5ml Augmentin, then rinse with Peridex after brushing" },
-    { time: "8:00 PM", name: "Vitamin C", detail: "Thorne Vitamin C" },
-    { time: "10:00 PM", name: "Flonase + Astepro", detail: "Nasal sprays" },
-    { time: "10:00 PM", name: "Klonopin", detail: "1 tablet for sleep. No Percocet at bedtime." }
+    { time: "8:00 AM", name: "Percocet \u00bd\u20131 tablet", detail: "" },
+    { time: "9:00 AM", name: "Augmentin 5ml + Peridex rinse", detail: "Rinse with salt water first, then Peridex" },
+    { time: "10:00 AM", name: "Vitamin C + Ritual + Probiotics", detail: "" },
+    { time: "12:00 PM", name: "Percocet \u00bd\u20131 tablet", detail: "If needed" },
+    { time: "12:00 PM", name: "Zofran 1 tablet", detail: "If nauseous. Dissolves on tongue." },
+    { time: "2:00 PM", name: "Percocet \u00bd\u20131 tablet", detail: "If needed" },
+    { time: "6:00 PM", name: "Percocet \u00bd\u20131 + Zofran", detail: "If needed" },
+    { time: "7:00 PM", name: "Augmentin 5ml + Peridex rinse", detail: "Rinse with salt water first, then Peridex" },
+    { time: "8:00 PM", name: "Vitamin C", detail: "" },
+    { time: "10:00 PM", name: "Flonase + Astepro", detail: "" },
+    { time: "10:00 PM", name: "Klonopin 1 tablet", detail: "No Percocet at bedtime" }
   ];
 
   function getDisplayDate() {
@@ -231,8 +231,7 @@
           <span style="width: 22px; height: 22px; margin-top: 2px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1.5px solid ${done ? 'var(--sage)' : 'var(--light)'}; background: ${done ? 'var(--sage)' : 'transparent'}; transition: all 0.15s;">${done ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"/></svg>' : ''}</span>
           <span style="font-family: 'Literata', serif; font-size: 15px; color: var(--amber); font-weight: 500; min-width: 80px; flex-shrink: 0;">${row.time}</span>
           <span style="font-family: 'Literata', serif; font-size: 15px; color: var(--charcoal); ${done ? 'text-decoration: line-through; text-decoration-color: var(--light);' : ''}">
-            <span style="font-weight: 500;">${row.name}</span><br>
-            <span style="font-size: 13px; color: var(--mid); font-weight: 400; text-decoration: none; display: inline-block;">${row.detail}</span>
+            <span style="font-weight: 500;">${row.name}</span>${row.detail ? '<br><span style="font-size: 13px; color: var(--mid); font-weight: 400; text-decoration: none; display: inline-block;">' + row.detail + '</span>' : ''}
           </span>
         </div>`;
     }).join('');
