@@ -170,29 +170,81 @@
   <!-- Daily schedule -->
   <div class="med-section">
     <h2 class="med-title">Daily schedule</h2>
-    <p class="med-text" style="margin-bottom: 16px;">This is a suggested schedule based on my prescriptions. Adjust times as needed, but maintain the intervals between doses.</p>
+    <div id="schedule-date" style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber); margin-bottom: 16px;"></div>
 
-    <table class="schedule-table">
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Medication</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>6:00 AM</td><td>Percocet (½–1 tablet)</td></tr>
-        <tr><td>7:00 AM</td><td>Augmentin (5ml) + Peridex rinse after brushing</td></tr>
-        <tr><td>8:00 AM</td><td>Thorne Vitamin C + Ritual multivitamin + Probiotics</td></tr>
-        <tr><td>10:00 AM</td><td>Percocet (½–1 tablet) if needed</td></tr>
-        <tr><td>12:00 PM</td><td>Zofran (1 dissolving tablet) if nauseous</td></tr>
-        <tr><td>2:00 PM</td><td>Percocet (½–1 tablet) if needed</td></tr>
-        <tr><td>6:00 PM</td><td>Percocet (½–1 tablet) if needed. Zofran if nauseous.</td></tr>
-        <tr><td>7:00 PM</td><td>Augmentin (5ml) + Peridex rinse after brushing</td></tr>
-        <tr><td>8:00 PM</td><td>Thorne Vitamin C</td></tr>
-        <tr><td>10:00 PM</td><td>Klonopin (1 tablet) for sleep. No Percocet at bedtime.</td></tr>
-      </tbody>
-    </table>
+    <div id="schedule-rows"></div>
+
+    <div style="margin-top: 16px; display: flex; gap: 12px; align-items: center;">
+      <button id="reset-btn" style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; background: none; border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; color: var(--mid); cursor: pointer;">Reset today</button>
+      <span style="font-size: 12px; color: var(--light);">Resets automatically each day</span>
+    </div>
   </div>
+
+  <script>
+  const schedule = [
+    { time: "8:00 AM", med: "Percocet (½–1 tablet)" },
+    { time: "9:00 AM", med: "Augmentin (5ml) + Peridex rinse after brushing" },
+    { time: "10:00 AM", med: "Thorne Vitamin C + Ritual multivitamin + Probiotics" },
+    { time: "12:00 PM", med: "Percocet (½–1 tablet) if needed" },
+    { time: "12:00 PM", med: "Zofran (1 dissolving tablet) if nauseous" },
+    { time: "2:00 PM", med: "Percocet (½–1 tablet) if needed" },
+    { time: "6:00 PM", med: "Percocet (½–1 tablet) if needed. Zofran if nauseous." },
+    { time: "7:00 PM", med: "Augmentin (5ml) + Peridex rinse after brushing" },
+    { time: "8:00 PM", med: "Thorne Vitamin C" },
+    { time: "10:00 PM", med: "Klonopin (1 tablet) for sleep. No Percocet at bedtime." }
+  ];
+
+  function getDisplayDate() {
+    const now = new Date();
+    const saturday = new Date(2026, 3, 11); // Apr 11, 2026
+    return now < saturday ? saturday : now;
+  }
+
+  function getDateKey(d) {
+    return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+  }
+
+  function formatDate(d) {
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    return days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate();
+  }
+
+  const displayDate = getDisplayDate();
+  const dateKey = getDateKey(displayDate);
+  const storageKey = 'med-schedule-' + dateKey;
+
+  document.getElementById('schedule-date').textContent = formatDate(displayDate);
+
+  let taken = JSON.parse(localStorage.getItem(storageKey) || '{}');
+
+  function render() {
+    const container = document.getElementById('schedule-rows');
+    container.innerHTML = schedule.map((row, i) => {
+      const done = taken[i] === true;
+      return `
+        <div onclick="toggle(${i})" style="display: flex; align-items: baseline; gap: 12px; padding: 10px 0; border-bottom: 1px solid #e8e2d8; cursor: pointer; user-select: none; opacity: ${done ? '0.45' : '1'}; transition: opacity 0.15s;">
+          <span style="font-size: 18px; flex-shrink: 0; line-height: 1; position: relative; top: 1px;">${done ? '\u25CF' : '\u25CB'}</span>
+          <span style="font-family: 'Literata', serif; font-size: 15px; color: var(--amber); font-weight: 500; min-width: 80px; flex-shrink: 0;">${row.time}</span>
+          <span style="font-family: 'Literata', serif; font-size: 15px; color: var(--charcoal); ${done ? 'text-decoration: line-through; text-decoration-color: var(--light);' : ''}">${row.med}</span>
+        </div>`;
+    }).join('');
+  }
+
+  function toggle(i) {
+    taken[i] = !taken[i];
+    localStorage.setItem(storageKey, JSON.stringify(taken));
+    render();
+  }
+
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    taken = {};
+    localStorage.removeItem(storageKey);
+    render();
+  });
+
+  render();
+  </script>
 
   <!-- Pain management -->
   <div class="med-section">
