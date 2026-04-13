@@ -8,7 +8,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://chanpory.github.io/recovery/medications.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Medications & exercise — Chanpory’s recovery guide</title>
+<title>Daily schedule — Chanpory’s recovery guide</title>
 <link rel="stylesheet" href="styles.css?v=12">
 <style>
   .med-section {
@@ -151,14 +151,14 @@
     <a href="surgery-day.html">Surgery day</a>
     <a href="timeline.html">Timeline</a>
     <a href="meals.html">Meal plan</a>
-    <a href="medications.html" class="active">Medications & exercise</a>
+    <a href="medications.html" class="active">Daily schedule</a>
     <a href="post-op-care.html">Post-op care</a>
     <a href="appointments.html">Appointments</a>
     <a href="contacts.html">Contacts</a>
   </nav>
 
   <div class="header" style="border-bottom: none; padding-bottom: 0;">
-    <h1 class="header-title">Medications & exercise</h1>
+    <h1 class="header-title">Daily schedule</h1>
   </div>
 
   <div class="warning-box" style="margin-top: 24px;">
@@ -169,7 +169,7 @@
 
   <!-- Daily schedule -->
   <div class="med-section">
-    <h2 class="med-title">Daily schedule</h2>
+    <h2 class="med-title">Today</h2>
     <div id="schedule-date" style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber); margin-bottom: 16px;"></div>
 
     <div id="schedule-rows"></div>
@@ -187,19 +187,26 @@
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   const schedule = [
-    { time: "8:00 AM", name: "Percocet ½–1 tablet", detail: "" },
+    { time: "8:00 AM", name: "Bone broth + collagen + meds", detail: "Percocet ½–1 tablet. Vitamin C with collagen." },
     { time: "9:00 AM", name: "Augmentin 5ml + Peridex rinse", detail: "Rinse with salt water first, then Peridex" },
-    { time: "10:00 AM", name: "Vitamin C + Ritual + Probiotics", detail: "" },
-    { time: "10:30 AM", name: "Peloton 30 min", detail: "Helps with circulation and healing" },
-    { time: "12:00 PM", name: "Percocet ½–1 tablet, if needed", detail: "" },
+    { time: "9:30 AM", name: "Morning smoothie", detail: "Rotate daily. See meal plan for options." },
+    { time: "10:00 AM", name: "Ritual + Probiotics", detail: "" },
+    { time: "10:30 AM", name: "Peloton 30 min", detail: "" },
+    { time: "11:00 AM", name: "Kate’s Farms shake", detail: "Sip slowly over 20–30 min" },
+    { time: "12:00 PM", name: "Percocet ½–1 tablet, if needed", detail: "" },
     { time: "12:00 PM", name: "Zofran 1 tablet", detail: "If nauseous. Dissolves on tongue." },
-    { time: "2:00 PM", name: "Percocet ½–1 tablet, if needed", detail: "" },
-    { time: "6:00 PM", name: "Percocet ½–1 + Zofran, if needed", detail: "" },
+    { time: "1:00 PM", name: "Ginger-turmeric broth + tofu", detail: "" },
+    { time: "2:00 PM", name: "Percocet ½–1 tablet, if needed", detail: "" },
+    { time: "3:00 PM", name: "Coconut avocado smoothie", detail: "" },
+    { time: "5:00 PM", name: "Chicken broth + tofu", detail: "" },
+    { time: "6:00 PM", name: "Percocet ½–1 + Zofran, if needed", detail: "" },
+    { time: "7:00 PM", name: "Tom Kha broth + tofu", detail: "" },
     { time: "7:00 PM", name: "Augmentin 5ml + Peridex rinse", detail: "Rinse with salt water first, then Peridex" },
     { time: "7:30 PM", name: "Peloton 30 min", detail: "" },
-    { time: "8:00 PM", name: "Vitamin C", detail: "" },
+    { time: "9:00 PM", name: "Kate’s Farms shake + evening meds", detail: "" },
     { time: "10:00 PM", name: "Flonase + Astepro", detail: "" },
-    { time: "10:00 PM", name: "Klonopin 1 tablet", detail: "No Percocet at bedtime" }
+    { time: "10:00 PM", name: "Klonopin 1 tablet", detail: "No Percocet at bedtime" },
+    { time: "10:30 PM", name: "Sesame milk + collagen nightcap", detail: "Vitamin C with collagen" }
   ];
 
   function getDisplayDate() {
