@@ -172,6 +172,8 @@
     <h2 class="med-title">Today</h2>
     <div id="schedule-date" style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber); margin-bottom: 16px;"></div>
 
+    <div id="protein-counter" style="font-family: 'Literata', serif; font-size: 20px; font-weight: 500; color: var(--charcoal); margin-bottom: 20px;"><span id="protein-consumed">0</span><span style="font-size: 14px; color: var(--mid);"> / 100g protein</span></div>
+
     <div id="schedule-rows"></div>
 
     <div style="margin-top: 16px; display: flex; gap: 12px; align-items: center;">
@@ -187,28 +189,24 @@
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   const schedule = [
-    { time: "7:00 AM", name: "Navage nasal rinse", detail: "" },
-    { time: "8:00 AM", name: "Bone broth + collagen + meds", detail: "Percocet ½–1 tablet. Vitamin C with collagen." },
-    { time: "~8:15 AM", name: "Leave for follow-up appointment", detail: "~45 min drive to Walnut Creek. See appointments page." },
-    { time: "9:30 AM", name: "Kate’s Farms High Protein shake", detail: "Use High Protein until other shakes and broths can be tolerated" },
-    { time: "10:00 AM", name: "Augmentin 5ml + Peridex rinse", detail: "Rinse with salt water first, then Peridex" },
-    { time: "10:00 AM", name: "Ritual + Probiotics", detail: "" },
-    { time: "10:00 AM", name: "Pseudoephedrine 10ml", detail: "For ear pain" },
-    { time: "10:30 AM", name: "Peloton 30 min", detail: "" },
-    { time: "12:00 PM", name: "Percocet ½–1 tablet, if needed", detail: "" },
-    { time: "1:00 PM", name: "Kate’s Farms High Protein shake", detail: "Use High Protein until other shakes and broths can be tolerated" },
-    { time: "2:00 PM", name: "Percocet ½–1 tablet, if needed", detail: "" },
-    { time: "3:00 PM", name: "Kate’s Farms High Protein shake", detail: "Use High Protein until other shakes and broths can be tolerated" },
-    { time: "5:00 PM", name: "Kate’s Farms High Protein shake", detail: "Use High Protein until other shakes and broths can be tolerated" },
-    { time: "6:00 PM", name: "Percocet ½–1 tablet, if needed", detail: "" },
-    { time: "7:00 PM", name: "Kate’s Farms High Protein shake", detail: "Use High Protein until other shakes and broths can be tolerated" },
-    { time: "7:30 PM", name: "Peloton 30 min", detail: "" },
-    { time: "9:00 PM", name: "Kate’s Farms High Protein shake", detail: "Use High Protein until other shakes and broths can be tolerated" },
-    { time: "10:00 PM", name: "Sesame milk + collagen nightcap", detail: "Vitamin C with collagen. Last food before bed." },
-    { time: "10:30 PM", name: "Augmentin 5ml + Peridex rinse", detail: "Salt water rinse first, then Peridex. Last thing in mouth." },
-    { time: "10:30 PM", name: "Navage nasal rinse", detail: "" },
-    { time: "10:30 PM", name: "Flonase + Astepro", detail: "" },
-    { time: "10:30 PM", name: "Klonopin 1 tablet", detail: "No Percocet at bedtime" }
+    { time: "7:00 AM", name: "Navage nasal rinse", detail: "", protein: 0 },
+    { time: "8:00 AM", name: "Kate’s Farms High Protein shake", detail: "25g protein", protein: 25 },
+    { time: "~8:15 AM", name: "Leave for follow-up appointment", detail: "~45 min drive to Walnut Creek. See appointments page.", protein: 0 },
+    { time: "10:00 AM", name: "Augmentin 5ml + Peridex rinse", detail: "Rinse with salt water first, then Peridex", protein: 0 },
+    { time: "10:00 AM", name: "Percocet ½–1 tablet + Vitamin C", detail: "", protein: 0 },
+    { time: "10:00 AM", name: "Ritual + Probiotics + Pseudoephedrine 10ml", detail: "", protein: 0 },
+    { time: "10:30 AM", name: "Peloton 30 min", detail: "", protein: 0 },
+    { time: "12:00 PM", name: "Kate’s Farms High Protein shake", detail: "25g protein", protein: 25 },
+    { time: "2:00 PM", name: "Percocet ½–1 tablet, if needed", detail: "", protein: 0 },
+    { time: "5:00 PM", name: "Kate’s Farms High Protein shake", detail: "25g protein", protein: 25 },
+    { time: "6:00 PM", name: "Percocet ½–1 tablet, if needed", detail: "", protein: 0 },
+    { time: "7:30 PM", name: "Peloton 30 min", detail: "", protein: 0 },
+    { time: "9:00 PM", name: "Kate’s Farms High Protein shake", detail: "25g protein", protein: 25 },
+    { time: "10:00 PM", name: "Vitamin C", detail: "", protein: 0 },
+    { time: "10:30 PM", name: "Augmentin 5ml + Peridex rinse", detail: "Salt water rinse first, then Peridex. Last thing in mouth.", protein: 0 },
+    { time: "10:30 PM", name: "Navage nasal rinse", detail: "", protein: 0 },
+    { time: "10:30 PM", name: "Flonase + Astepro", detail: "", protein: 0 },
+    { time: "10:30 PM", name: "Klonopin 1 tablet", detail: "No Percocet at bedtime", protein: 0 }
   ];
 
   function getDisplayDate() {
@@ -233,6 +231,12 @@
 
   let taken = {};
 
+  function updateProtein() {
+    let total = 0;
+    schedule.forEach((row, i) => { if (taken[i] && row.protein) total += row.protein; });
+    document.getElementById('protein-consumed').textContent = total + 'g';
+  }
+
   function render() {
     const container = document.getElementById('schedule-rows');
     container.innerHTML = schedule.map((row, i) => {
@@ -246,6 +250,7 @@
           </span>
         </div>`;
     }).join('');
+    updateProtein();
   }
 
   async function loadFromDb() {
