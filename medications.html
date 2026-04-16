@@ -224,7 +224,7 @@
   const schedule = [
     { time: "7:00 AM", name: "Navage nasal rinse", detail: "", protein: 0 },
     { time: "8:00 AM", name: "Kate’s Farms High Protein shake", detail: "25g protein", protein: 25 },
-    { time: "~8:15 AM", name: "Leave for follow-up appointment", detail: "~45 min drive to Walnut Creek. See appointments page.", protein: 0 },
+    { type: "appointment", protein: 0 },
     { time: "10:00 AM", name: "Augmentin 5ml", detail: "Shake well before dose", protein: 0 },
     { time: "10:05 AM", name: "Peridex rinse", detail: "Salt water rinse first, then Peridex", protein: 0 },
     { time: "10:00 AM", name: "Percocet or Advil + Vitamin C", detail: "", protein: 0 },
@@ -264,17 +264,52 @@
   const dateKey = getDateKey(displayDate);
   document.getElementById('schedule-date').textContent = formatDate(displayDate);
 
+  const appointmentSchedule = {
+    '2026-04-13': { time: '8:15 AM', appt: '9:00 AM', leave: 'Leave by 8:15 AM' },
+    '2026-04-14': { time: '8:15 AM', appt: '9:00 AM', leave: 'Leave by 8:15 AM' },
+    '2026-04-15': { time: '7:45 AM', appt: '8:30 AM', leave: 'Leave by 7:45 AM' },
+    '2026-04-16': { time: '7:45 AM', appt: '8:30 AM', leave: 'Leave by 7:45 AM' },
+    '2026-04-17': { time: '7:15 AM', appt: '8:00 AM', leave: 'Leave by 7:15 AM' }
+  };
+
+  function parseTime(value) {
+    const clean = value.replace('~', '');
+    const [time, meridiem] = clean.split(' ');
+    let [hours, minutes] = time.split(':').map(Number);
+    if (meridiem === 'PM' && hours !== 12) hours += 12;
+    if (meridiem === 'AM' && hours === 12) hours = 0;
+    return hours * 60 + minutes;
+  }
+
+  function buildSchedule() {
+    const appt = appointmentSchedule[dateKey];
+    const rows = schedule.map((row) => {
+      if (row.type === 'appointment') {
+        if (!appt) return null;
+        return {
+          time: appt.time,
+          name: 'Leave for follow-up appointment',
+          detail: `${appt.leave}. Appointment is at ${appt.appt} in Walnut Creek.`,
+          protein: 0
+        };
+      }
+      return row;
+    }).filter(Boolean);
+    return rows.sort((a, b) => parseTime(a.time) - parseTime(b.time));
+  }
+
+  const activeSchedule = buildSchedule();
   let taken = {};
 
   function updateProtein() {
     let total = 0;
-    schedule.forEach((row, i) => { if (taken[i] && row.protein) total += row.protein; });
+    activeSchedule.forEach((row, i) => { if (taken[i] && row.protein) total += row.protein; });
     document.getElementById('protein-consumed').textContent = total + 'g';
   }
 
   function render() {
     const container = document.getElementById('schedule-rows');
-    container.innerHTML = schedule.map((row, i) => {
+    container.innerHTML = activeSchedule.map((row, i) => {
       const done = taken[i] === true;
       return `
         <div onclick="toggle(${i})" style="display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #e8e2d8; cursor: pointer; user-select: none; opacity: ${done ? '0.45' : '1'}; transition: opacity 0.15s;">
