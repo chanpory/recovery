@@ -99,6 +99,20 @@
     margin-bottom: 4px;
   }
 
+
+  .appt-completed {
+    opacity: 0.5;
+  }
+
+  .appt-completed .appt-date,
+  .appt-completed .appt-desc,
+  .appt-completed .appt-location,
+  .appt-completed .appt-driver,
+  .appt-completed .appt-tbd {
+    text-decoration: line-through;
+    text-decoration-color: var(--light);
+  }
+
   @media (max-width: 640px) {
     .appt { flex-direction: column; gap: 2px; }
     .appt-date { min-width: auto; }
@@ -116,7 +130,6 @@
     <a href="meals.html">Meal plan</a>
     <a href="medications.html">Daily schedule</a>
     <a href="post-op-care.html">Post-op care</a>
-    <a href="surgery-day.html">Surgery day</a>
     <a href="appointments.html" class="active">Appointments</a>
     <a href="contacts.html">Contacts</a>
   </nav>
@@ -127,75 +140,15 @@
 
   <div class="appointments">
 
-    <div class="section-label" style="padding-top: 0;">Surgery</div>
+    <div class="section-label" style="padding-top: 0;">Orthodontist · Dr. Hockel</div>
 
     <div class="appt">
-      <div class="appt-date">Thu, Apr 9 · 5:30 AM</div>
+      <div class="appt-date">Wed, May 13 · 3:40 PM</div>
       <div class="appt-details">
-        <div class="appt-desc">MMA surgery for sleep apnea <span class="appt-badge badge-surgery">Surgery</span></div>
-        <div class="appt-location">Alta Bates Summit Medical Center · 2450 Ashby Ave, Berkeley</div>
-        <div class="appt-tbd">Check-in at 5:30 AM</div>
+        <div class="appt-desc">Orthodontist appointment <span class="appt-badge badge-followup">Week 5</span></div>
+        <div class="appt-location">Life Dental & Orthodontics · 2651 Oak Grove Rd, Walnut Creek</div>
       </div>
     </div>
-
-    <div class="appt">
-      <div class="appt-date">Sat, Apr 11</div>
-      <div class="appt-details">
-        <div class="appt-desc">Estimated discharge <span class="appt-badge badge-followup">Day 2</span></div>
-        <div class="appt-location">Alta Bates Summit Medical Center · 2450 Ashby Ave, Berkeley</div>
-        <div class="appt-tbd">Could be Sunday Apr 12 if 3-night stay is needed. Discharge requires pain below 5 on oral meds, 1–2L fluid/day, 60–80g protein/day, adequate mobility, and someone there to take me home.</div>
-      </div>
-    </div>
-
-    <div class="section-label">Post-op follow-ups · Dr. Movahed</div>
-
-    <div class="appt">
-      <div class="appt-date">Mon, Apr 13 · 9:00 AM</div>
-      <div class="appt-details">
-        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 4</span></div>
-        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
-        <div class="appt-driver">Matt driving</div>
-      </div>
-    </div>
-
-    <div class="appt">
-      <div class="appt-date">Tue, Apr 14 · 9:00 AM</div>
-      <div class="appt-details">
-        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 5</span></div>
-        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
-        <div class="appt-tbd">Driver TBD</div>
-      </div>
-    </div>
-
-    <div class="appt">
-      <div class="appt-date">Wed, Apr 15 · 8:30 AM</div>
-      <div class="appt-details">
-        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 6</span></div>
-        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
-        <div class="appt-driver">Sean driving</div>
-      </div>
-    </div>
-
-    <div class="appt">
-      <div class="appt-date">Thu, Apr 16 · 8:30 AM</div>
-      <div class="appt-details">
-        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 7</span></div>
-        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
-        <div class="appt-tbd">Driver TBD</div>
-      </div>
-    </div>
-
-    <div class="appt">
-      <div class="appt-date">Fri, Apr 17 · 8:00 AM</div>
-      <div class="appt-details">
-        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 8</span></div>
-        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
-        <div class="appt-driver">Sean driving</div>
-      </div>
-    </div>
-
-    <div class="footer-note fn-amber" style="margin: 16px 0 0; font-size: 14px;">Follow-ups for the week after April 17 are still being scheduled. Depending on my recovery, I may not need daily visits that week, but there will still be some appointments.</div>
-
 
     <div class="section-label">Physical therapy · Agile EMR</div>
 
@@ -253,16 +206,70 @@
       </div>
     </div>
 
-    <div class="section-label">Orthodontist · Dr. Hockel</div>
+    <div class="section-label">Completed</div>
 
-    <div class="appt">
-      <div class="appt-date">Wed, May 13 · 3:40 PM</div>
+    <div class="appt appt-completed">
+      <div class="appt-date">Thu, Apr 9 · 5:30 AM</div>
       <div class="appt-details">
-        <div class="appt-desc">Orthodontist appointment <span class="appt-badge badge-followup">Week 5</span></div>
-        <div class="appt-location">Life Dental & Orthodontics · 2651 Oak Grove Rd, Walnut Creek</div>
+        <div class="appt-desc">MMA surgery for sleep apnea <span class="appt-badge badge-surgery">Surgery</span></div>
+        <div class="appt-location">Alta Bates Summit Medical Center · 2450 Ashby Ave, Berkeley</div>
+        <div class="appt-tbd">Check-in at 5:30 AM</div>
       </div>
     </div>
 
+    <div class="appt appt-completed">
+      <div class="appt-date">Sat, Apr 11</div>
+      <div class="appt-details">
+        <div class="appt-desc">Estimated discharge <span class="appt-badge badge-followup">Day 2</span></div>
+        <div class="appt-location">Alta Bates Summit Medical Center · 2450 Ashby Ave, Berkeley</div>
+        <div class="appt-tbd">Could be Sunday Apr 12 if 3-night stay is needed. Discharge requires pain below 5 on oral meds, 1–2L fluid/day, 60–80g protein/day, adequate mobility, and someone there to take me home.</div>
+      </div>
+    </div>
+
+    <div class="appt appt-completed">
+      <div class="appt-date">Mon, Apr 13 · 9:00 AM</div>
+      <div class="appt-details">
+        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 4</span></div>
+        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
+        <div class="appt-driver">Matt driving</div>
+      </div>
+    </div>
+
+    <div class="appt appt-completed">
+      <div class="appt-date">Tue, Apr 14 · 9:00 AM</div>
+      <div class="appt-details">
+        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 5</span></div>
+        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
+      </div>
+    </div>
+
+    <div class="appt appt-completed">
+      <div class="appt-date">Wed, Apr 15 · 8:30 AM</div>
+      <div class="appt-details">
+        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 6</span></div>
+        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
+        <div class="appt-driver">Sean driving</div>
+      </div>
+    </div>
+
+    <div class="appt appt-completed">
+      <div class="appt-date">Thu, Apr 16 · 8:30 AM</div>
+      <div class="appt-details">
+        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 7</span></div>
+        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
+      </div>
+    </div>
+
+    <div class="appt appt-completed">
+      <div class="appt-date">Fri, Apr 17 · 8:00 AM</div>
+      <div class="appt-details">
+        <div class="appt-desc">Follow-up <span class="appt-badge badge-followup">Day 8</span></div>
+        <div class="appt-location">Movahed OMS · 110 Tampico Suite 220, Walnut Creek</div>
+        <div class="appt-driver">Sean driving</div>
+      </div>
+    </div>
+
+  </div>
   </div>
 
 
